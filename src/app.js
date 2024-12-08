@@ -22,6 +22,7 @@ const sharpenKernel = [
 var vmapSize = 18.144;
 var mapSize = 17.28;
 var tileSize = 1.92;
+var currentStyle = "streets-v11";
 
 var grid = loadSettings();
 
@@ -341,6 +342,7 @@ function deleteCaches() {
 
 function setMapStyle(el) {
     const layerId = el.id;
+    currentStyle = el.id
     map.setStyle('mapbox://styles/mapbox/' + layerId);
 }
 
@@ -860,7 +862,7 @@ async function getMapImage() {
     let maxLng = Math.max(bounds.topleft[0], bounds.bottomright[0]);
     let maxLat = Math.max(bounds.topleft[1], bounds.bottomright[1]);
 
-    let styleName = 'satellite-v9';
+    let styleName = currentStyle;
 
     let url = 'https://api.mapbox.com/styles/v1/mapbox/'
         + styleName + '/static/['
